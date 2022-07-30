@@ -73,6 +73,7 @@ const Header = () => {
               onClick={login}
               whileTap={{ scale: 0.6 }}
               src={user ? user.photoURL : Avatar}
+              referrerpolicy="no-referrer"
               alt=""
               className="w-10 min-w-[40px] h-10 min-h-[40px] cursor-pointer rounded-full"
             />
@@ -125,6 +126,7 @@ const Header = () => {
               onClick={login}
               whileTap={{ scale: 0.6 }}
               src={user ? user.photoURL : Avatar}
+              referrerpolicy="no-referrer"
               alt=""
               className="w-10 min-w-[40px] h-10 min-h-[40px] cursor-pointer rounded-full"
             />

@@ -2,18 +2,16 @@ import { AnimatePresence } from "framer-motion";
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Header } from "./components";
-// import { actionType } from "./contextProvider/reducer";
-// import { useStateValue } from "./contextProvider/StateProvider";
 import { CreateItem } from "./pages";
 import { MainContrainer } from "./pages/MainContrainer";
-// import { getAllFoodItems } from "./utils/firebaseFunctions";
 import { useFetchItems } from "./utils/fetchLocalStorageData";
 
 const App = () => {
   const { fetchData } = useFetchItems();
+
   useEffect(() => {
     fetchData();
-  });
+  },[]);
 
   return (
     <AnimatePresence exitBeforeEnter>
