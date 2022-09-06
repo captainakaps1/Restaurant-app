@@ -2,20 +2,32 @@ import React from "react";
 import { MdShoppingCart } from "react-icons/md";
 import { motion } from "framer-motion";
 
-function RowContainer({ flag }) {
+function RowContainer({ flag, data, ref }) {
+  console.log(data )
   return (
     <div
-      className={`w-full my-12 ${
-        flag ? "overflow-x-scroll" : "overflow-x-hidden"
+    ref={ref}
+      className={`w-full flex items-center gap-3 my-12 ${
+        flag ? "overflow-x-scroll scrollbar-none" : "overflow-x-hidden flex-wrap "
       }`}
     >
-      <div className="w-300 md:w-350 h-auto my-12 backdrop-blur-lg">
+      {data && data.map((item) => (
+        <ItemCard key={item.id} item={item}/>
+      ))}
+      
+    </div>
+  );
+}
+
+const ItemCard = ({item}) => {
+  return (
+    <div className="w-full min-w-[300px] md:w-350 md:min-w-[350px] h-auto my-12 shadow-sm hover:drop-shadow-lg bg-cardOverlay rounded-lg p-2 backdrop-blur-lg">
         <div className="w-full flex items-center justify-between">
           <motion.img
             whileHover={{ scale: 1.2 }}
             src="https://firebasestorage.googleapis.com/v0/b/restaurant-app-f1057.appspot.com/o/Images%2F1649436810870-i5.png?alt=media&token=3b35e3b6-3e02-450b-807a-98b2c4138404"
             alt="icecreams"
-            className="w-40 -mt-8"
+            className="w-40 -mt-8 drop-shadow-2xl"
           />
           <motion.div
             whileTap={{ scale: 0.75 }}
@@ -37,8 +49,7 @@ function RowContainer({ flag }) {
           </div>
         </div>
       </div>
-    </div>
-  );
+  )
 }
 
 export default RowContainer;

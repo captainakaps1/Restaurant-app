@@ -3,8 +3,17 @@ import Home from "./Home";
 import { motion } from "framer-motion";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import RowContainer from "../components/RowContainer";
+import { useStateValue } from "../contextProvider/StateProvider";
+import { useRef } from "react";
 
 export const MainContrainer = () => {
+  const [{foodItems}, dispatch] = useStateValue();
+  const rowContainerRef = useRef()
+
+  const scroll = (scrollOffSet) => {
+    rowContainerRef.current.scrollLeft += scrollOffSet; 
+  }
+
   return (
     <div className="w-full h-auto flex flex-col items-center justify-center">
       <Home />
@@ -17,12 +26,14 @@ export const MainContrainer = () => {
           <div className="hidden md:flex gap-3 items-center">
             <motion.div
               whileTap={{ scale: 0.57 }}
+              onClick={() => scroll(-200)}
               className="w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer transition-all ease-in-out duration-100 hover:shadow-lg flex items-center justify-center"
             >
               <MdChevronLeft className="text-lg text-white" />
             </motion.div>
             <motion.div
               whileTap={{ scale: 0.57 }}
+              onClick={() => scroll(200)}
               className="w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer transition-all ease-in-out duration-100 hover:shadow-lg flex items-center justify-center"
             >
               <MdChevronRight className="text-lg text-white" />
@@ -30,7 +41,7 @@ export const MainContrainer = () => {
           </div>
         </div>
 
-        <RowContainer flag={true} />
+        <RowContainer ref={rowContainerRef} flag={true} data={foodItems}/>
       </section>
     </div>
   );
