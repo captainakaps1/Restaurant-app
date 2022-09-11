@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { MdShoppingCart } from "react-icons/md";
 import { motion } from "framer-motion";
 
-function RowContainer({ flag, data, ref }) {
-  console.log(data )
+const RowContainer = ({ flag, data, scollValue }) => {
+  const rowContainer = useRef();
+  useEffect(() => {
+     rowContainer.current.scollLeft += scollValue;
+  }, [scollValue])
+  
   return (
     <div
-    ref={ref}
+       ref={rowContainer}
       className={`w-full flex items-center gap-3 my-12 ${
         flag ? "overflow-x-scroll scrollbar-none" : "overflow-x-hidden flex-wrap "
       }`}
@@ -25,9 +29,9 @@ const ItemCard = ({item}) => {
         <div className="w-full flex items-center justify-between">
           <motion.img
             whileHover={{ scale: 1.2 }}
-            src="https://firebasestorage.googleapis.com/v0/b/restaurant-app-f1057.appspot.com/o/Images%2F1649436810870-i5.png?alt=media&token=3b35e3b6-3e02-450b-807a-98b2c4138404"
+            src={item.imageURL}
             alt="icecreams"
-            className="w-40 -mt-8 drop-shadow-2xl"
+            className="w-40 h-40 -mt-8 drop-shadow-2xl"
           />
           <motion.div
             whileTap={{ scale: 0.75 }}
@@ -39,12 +43,12 @@ const ItemCard = ({item}) => {
 
         <div className="w-full flex flex-col items-end justify-end">
           <p className="text-textColor font-semibold text-base md:text-lg">
-            Strawberry
+            {item.title}
           </p>
-          <p className="mt-2 text-sm text-gray-500">45 Calories</p>
+          <p className="mt-2 text-sm text-gray-500">{item.calories} Calories</p>
           <div className="flex items-center gap-8">
             <p className="text-lg text-headingColor font-semibold">
-              <span className="text-sm text-red-500">$</span> 5.25
+              <span className="text-sm text-red-500">$</span> {item.price}
             </p>
           </div>
         </div>
