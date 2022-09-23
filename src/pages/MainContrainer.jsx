@@ -7,7 +7,7 @@ import { useStateValue } from "../contextProvider/StateProvider";
 import MenuContainer from "../components/MenuContainer";
  
 export const MainContrainer = () => {
-  const [{foodItems}, dispatch] = useStateValue();
+  const [{foodItems}] = useStateValue();
   const [scollValue, setScollValue] = useState(0);
 
   useEffect(() => {
@@ -25,23 +25,23 @@ export const MainContrainer = () => {
 
           <div className="hidden md:flex gap-3 items-center">
             <motion.div
-              whileTap={{ scale: 0.57 }}
+              whileTap={{ scale: 0.75 }}
               onClick={() => setScollValue(-200)}
-              className="w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer transition-all ease-in-out duration-100 hover:shadow-lg flex items-center justify-center"
+              className="w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer hover:shadow-lg flex items-center justify-center"
             >
               <MdChevronLeft className="text-lg text-white" />
             </motion.div>
             <motion.div
-              whileTap={{ scale: 0.57 }}
+              whileTap={{ scale: 0.75 }}
               onClick={() => setScollValue(200)}
-              className="w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer transition-all ease-in-out duration-100 hover:shadow-lg flex items-center justify-center"
+              className="w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer hover:shadow-lg flex items-center justify-center"
             >
               <MdChevronRight className="text-lg text-white" />
             </motion.div>
           </div>
         </div>
 
-        <RowContainer scollValue={scollValue} flag={true} data={foodItems}/>
+        <RowContainer scollValue={scollValue} flag={true} data={foodItems?.filter(item => item.category === 'fruits')}/>
       </section>
       <MenuContainer/> 
     </div>

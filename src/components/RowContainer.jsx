@@ -12,7 +12,7 @@ const RowContainer = ({ flag, data, scollValue }) => {
     <div
        ref={rowContainer}
       className={`w-full flex items-center gap-3 my-12 ${
-        flag ? "overflow-x-scroll scrollbar-none" : "overflow-x-hidden flex-wrap "
+        flag ? "overflow-x-scroll scrollbar-none" : "overflow-x-hidden flex-wrap justify-center"
       }`}
     >
       {data && data.map((item) => (
@@ -31,11 +31,11 @@ const ItemCard = ({item}) => {
             whileHover={{ scale: 1.2 }}
             src={item.imageURL}
             alt="icecreams"
-            className="w-40 h-40 -mt-8 drop-shadow-2xl"
+            className="w-40 h-40 -mt-8 object-contain drop-shadow-2xl"
           />
           <motion.div
             whileTap={{ scale: 0.75 }}
-            className="w-8 h-8 rounded-full cursor-pointer hover:shadow-md flex items-center justify-center bg-red-500"
+            className="w-8 h-8 rounded-full cursor-pointer hover:shadow-md flex items-center justify-center bg-cartNumBg"
           >
             <MdShoppingCart className="text-white" />
           </motion.div>
@@ -48,7 +48,7 @@ const ItemCard = ({item}) => {
           <p className="mt-2 text-sm text-gray-500">{item.calories} Calories</p>
           <div className="flex items-center gap-8">
             <p className="text-lg text-headingColor font-semibold">
-              <span className="text-sm text-red-500">$</span> {item.price}
+              <span className="text-sm text-cartNumBg">$</span> {item.price}
             </p>
           </div>
         </div>
